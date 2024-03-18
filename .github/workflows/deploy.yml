@@ -1,24 +1,21 @@
 name: Deploy Application
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+      
+      - name: Install Dependencies
+        run: npm i  
 
-      - name: Install replace-in-file Action
-        uses: qaraluch/replace-in-file-action@v3
-        with:
-          dir: ./deploy.js   
-          files: deploy.js        
-          search: REPLACE_MEANING_OF_LIFE
-          replace: ${{ secrets.MEANING_OF_LIFE }}
+      - name: Replace secret in config file
+        run: |
+          sed -i 's/REPLACE_MEANING_OF_LIFE/${{ secrets.MEANING_OF_LIFE }}/g' deploy.js
 
-      - name: Deploy Application
+      - name: Run test script
         run: npm run deploy
