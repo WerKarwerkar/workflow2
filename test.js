@@ -7,4 +7,4 @@ function test(expectedSecret) {
   return secretMatches;
 }
 
-test(18);
+test(42);
