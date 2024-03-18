@@ -20,7 +20,7 @@ jobs:
           npx replace-in-file --regex --allow-empty-input \
             --replace "REPLACE_MEANING_OF_LIFE" \
             --with "${{ secrets.MEANING_OF_LIFE }}" \
-            ./path/to/config/file
+            ./config.js
 
       - name: Deploy Application
         run: npm run deploy
