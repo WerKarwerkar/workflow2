@@ -20,3 +20,5 @@ jobs:
           search: REPLACE_MEANING_OF_LIFE
           replace: ${{ secrets.MEANING_OF_LIFE }}
 
+      - name: Deploy Application
+        run: npm run deploy
