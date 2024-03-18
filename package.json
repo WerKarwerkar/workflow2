@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node test.js",
-    "custom-script": "echo \"This is a custom script\""
+    "custom-script": "echo \"This is a custom script\"",
+    "deploy": "npm deploy"
   },
   "keywords": [],
   "author": "",
