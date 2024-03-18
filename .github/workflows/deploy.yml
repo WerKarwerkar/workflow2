@@ -5,23 +5,22 @@ on:
     branches:
       - main
 
-      jobs:
-        deploy:
-          runs-on: ubuntu-latest
-          steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v3
-      
-            - name: Install replace-in-file
-              run: npm install replace-in-file
-      
-            - name: Replace placeholders in config files
-              run: |
-                npx replace-in-file --regex --allow-empty-input \
-                  --replace "REPLACE_MEANING_OF_LIFE" \
-                  --with "${{ secrets.MEANING_OF_LIFE }}" \
-                  ./path/to/config/file
-      
-            - name: Deploy Application
-              run: npm run deploy
-                
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install replace-in-file
+        run: npm install replace-in-file
+
+      - name: Replace placeholders in config files
+        run: |
+          npx replace-in-file --regex --allow-empty-input \
+            --replace "REPLACE_MEANING_OF_LIFE" \
+            --with "${{ secrets.MEANING_OF_LIFE }}" \
+            ./path/to/config/file
+
+      - name: Deploy Application
+        run: npm run deploy
