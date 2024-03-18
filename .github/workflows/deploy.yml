@@ -12,15 +12,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Install replace-in-file
-        run: npm install replace-in-file
+      - name: Install replace-in-file Action
+        uses: qaraluch/replace-in-file-action@v3
+        with:
+          dir: ./deploy.js   
+          files: deploy.js        
+          search: REPLACE_MEANING_OF_LIFE
+          replace: ${{ secrets.MEANING_OF_LIFE }}
 
-      - name: Replace placeholders in config files
-        run: |
-          npx replace-in-file --regex --allow-empty-input \
-            --replace "REPLACE_MEANING_OF_LIFE" \
-            --with "${{ secrets.MEANING_OF_LIFE }}" \
-            ./deploy.js
-
-      - name: Deploy Application
-        run: npm run deploy
